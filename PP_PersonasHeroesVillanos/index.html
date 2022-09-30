@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <script src="./persona.js" defer></script>
+
+    <title>ABM de Personas</title>
+</head>
+
+<body>
+    <section id="formDatos" class="formDatos">
+        <h1>Form Datos</h1>
+
+        <section class="input">
+            <!--      <p>Filtrar Por:</p>  -->
+            <label for="optionList">Filtrar por:</label>
+            <select name="selectorPersonas" id="selectorPersonas">
+                <option value="Todos"> Todos </option>
+                <option value="Heroe"> Heroe </option>
+                <option value="Villano"> Villano </option>
+            </select>
+        </section>
+        
+        <section id="promedios">
+            <label for="calcular">Calcular Edad Promedio:</label>
+            <input type="text" id="inputCalcular" readonly>
+            <button id="calcularPromedio">Calcular</button>
+        </section>
+
+        <section id="ckBoxColumnasTablaPersonas">
+            <input type="checkbox" name=".id" id="ckId" checked> ID
+            <input type="checkbox" name=".nombre" id="ckNombre" checked> Nombre
+            <input type="checkbox" name=".apellido" id="ckApellido" checked> Apellido
+            <input type="checkbox" name=".edad" id="ckEdad" checked> Edad
+            <input type="checkbox" name=".alterEgo" id="ckAlterEgo" checked> AlterEgo
+            <input type="checkbox" name=".ciudad" id="ckCiudad" checked> Posición
+            <input type="checkbox" name=".publicado" id="ckPublicado" checked> Publicado
+            <input type="checkbox" name=".enemigo" id="ckEnemigo" checked> Enemigo
+            <input type="checkbox" name=".robos" id="ckRobos" checked> Robos
+            <input type="checkbox" name=".asesinatos" id="ckAsesinatos" checked> Asesinatos
+        </section>
+
+        <table border="1" id="tablaPersonas">
+            <thead id="tablaPersonasHead">
+                <th class="id" id="colId"> ID </th>
+                <th class="nombre" id="colNombre"> Nombre </th>
+                <th class="apellido" id="colApellido"> Apellido </th>
+                <th class="edad" id="colEdad"> Edad </th>
+                <th class="alterEgo" id="colAlterEgo"> alterEgo</th>
+                <th class="ciudad" id="colCiudad"> Posición </th>
+                <th class="publicado" id="colPublicado"> Publicado </th>
+                <th class="enemigo" id="colEnemigo"> Enemigo </th>
+                <th class="robos" id="colRobos"> Robos </th>
+                <th class="asesinatos" id="colAsesinatos"> Asesinatos </th>
+            </thead>
+            <tbody id="tablaPersonasBody">
+            </tbody>
+        </table>
+
+        <button id="botonAgregar">Agregar</button>
+    </section>
+
+    <section id="formAgregar" class="formAgregar">
+        <h1>Formulario ABM</h1>
+
+        <form action="" method="post" id="formABM" name="formABM" enctype="multipart/form-data">
+            <label for="inputId">ID: </label><input type="text" id="inputId" readonly>
+            <label for="inputNombre">Nombre: </label><input type="text" id="inputNombre">
+            <label for="inputApellido">Apellido: </label><input type="text" id="inputApellido">
+            <label for="inputEdad">Edad: </label><input type="text" id="inputEdad">
+
+            <label for="optionTipo">Tipo:</label>
+            <select name="tipo" id="selectTipo">
+                <option value="Heroe">Heroe</option>
+                <option value="Villano">Villano</option>
+            </select>
+
+            <section id="formAgregarHeroe" class="formAgregarTipo">
+                <label for="inputAlterEgo">AlterEgo: </label><input type="text" id="inputAlterEgo" placeholder="red">
+                <label for="inputCiudad">Posición: </label><input type="text" id="inputCiudad">
+                <label for="inputPublicado">Publicado: </label><input type="text" id="inputPublicado">
+            </section>
+
+            <section id="formAgregarProfecional" class="formAgregarTipo">
+                <label for="inputEnemigo">Enemigo: </label><input type="text" id="inputEnemigo">
+                <label for="inputRobos">Robos: </label><input type="text" id="inputRobos">
+                <label for="inputAsesinatos">Asesinatos: </label><input type="text" id="inputAsesinatos">
+            </section>
+
+        </form>
+
+        <section>
+            <button id="botonAlta" class="Alta">Alta</button>
+            <button id="botonModificar">Modificar</button>
+            <button id="botonEliminar">Eliminar</button>
+            <button id="botonCancelar">Cancelar</button>
+        </section>
+
+    </section>
+
+
+
+    <script>
+    </script>
+
+
+    <style>
+        .ocultar {
+            display: none;
+        }
+    </style>
+
+</body>
+
+</html>
