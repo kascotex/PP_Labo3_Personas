@@ -1,5 +1,5 @@
 const tdClass = "</td><td class=";
-const SDFut = `${tdClass}"alterEgo">S/D${tdClass}"ciudad">S/D${tdClass}"publicado">S/D`;
+const SDFut = `${tdClass}"alterego">S/D${tdClass}"ciudad">S/D${tdClass}"publicado">S/D`;
 const SDPro = `${tdClass}"enemigo">S/D${tdClass}"robos">S/D${tdClass}"asesinatos">S/D`;
 
 class Persona {
@@ -53,27 +53,27 @@ class Persona {
 }
 
 class Heroe extends Persona {
-  alterEgo;
+  alterego;
   ciudad;
   publicado;
 
-  constructor(id, nombre, apellido, edad, alterEgo, ciudad, publicado) {
+  constructor(id, nombre, apellido, edad, alterego, ciudad, publicado) {
     super(id, nombre, apellido, edad);
-    this.alterEgo = alterEgo;
+    this.alterego = alterego;
     this.ciudad = ciudad;
     this.publicado = publicado;
   }
 
   static CrearDesdeObject(obj) {
-    return new Heroe(obj["id"], obj["nombre"], obj["apellido"], obj["edad"], obj["alterEgo"], obj["ciudad"], obj["publicado"]);
+    return new Heroe(obj["id"], obj["nombre"], obj["apellido"], obj["edad"], obj["alterego"], obj["ciudad"], obj["publicado"]);
   }
 
   ToString() {
-    return `${super.ToString()}, alterEgo: ${this.alterEgo}, ciudad: ${this.ciudad}, publicado: ${this.publicado}`;
+    return `${super.ToString()}, alterego: ${this.alterego}, ciudad: ${this.ciudad}, publicado: ${this.publicado}`;
   }
 
   ToStringRow() {
-    return `${super.ToStringRow()}${tdClass}"alterEgo">${this.alterEgo}${tdClass}"ciudad">${this.ciudad}${tdClass}"publicado">${this.publicado}${SDPro}`;
+    return `${super.ToStringRow()}${tdClass}"alterego">${this.alterego}${tdClass}"ciudad">${this.ciudad}${tdClass}"publicado">${this.publicado}${SDPro}`;
   }
 }
 
@@ -145,21 +145,6 @@ botonEliminar.onclick = EliminarPersona;
 MostrarTablaPeronas();
 MostrarFormAgregar(false);
 
-
-function OrdenarListaActual() {
-  datosCargados.sort((a, b) => {
-      if (a.nombre > b.nombre) {
-          return 1;
-      }
-      else if (a.nombre < b.nombre) {
-          return -1;
-      }
-      else {
-          return 0;
-      }
-  })
-}
-
 function CargarCamposPersona() {
   form.inputId.value = personaSelec.id;
   form.inputNombre.value = personaSelec.nombre;
@@ -168,7 +153,7 @@ function CargarCamposPersona() {
 
   if (personaSelec instanceof Heroe) {
     selectorAgregarTipo.value = "Heroe";
-    form.inputAlterEgo.value = personaSelec.alterEgo;
+    form.inputAlterego.value = personaSelec.alterego;
     form.inputCiudad.value = personaSelec.ciudad;
     form.inputPublicado.value = personaSelec.publicado;
   } else {
@@ -179,12 +164,98 @@ function CargarCamposPersona() {
   }
 }
 
-
 function SelecColumnaDeLaTabla(celda) {
+  console.log("head", celda.target.innerText);
 
-  console.log("cel: ",celda);
-  console.log(celda.target.innerText);
+  switch (celda.target.innerText) {
+    case "Id":
+      listaActual.sort((a, b) => {
+        return a.id - b.id;
+      });
+      break;
+    case "Nombre":
+      listaActual.sort((a, b) => {
+        if (a.nombre > b.nombre) {
+          return 1;
+        } else if (a.nombre < b.nombre) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      break;
+    case "Apellido":
+      listaActual.sort((a, b) => {
+        if (a.apellido > b.apellido) {
+          return 1;
+        } else if (a.apellido < b.apellido) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      break;
+    case "Edad":
+      listaActual.sort((a, b) => {
+        return a.edad - b.edad;
+      });
+      break;
+    case "Publicado":
+      listaActual.sort((a, b) => {
+        return a.publicado - b.publicado;
+      });
+      break;
+    case "Robos":
+      listaActual.sort((a, b) => {
+        return a.robos - b.robos;
+      });
+      break;
+    case "Asesinatos":
+      listaActual.sort((a, b) => {
+        return a.asesinatos - b.asesinatos;
+      });
+      break;
+    case "Alterego":
+      listaActual.sort((a, b) => {
+        if (a.alterego > b.alterego) {
+          return 1;
+        } else if (a.alterego < b.alterego) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      break;
+    case "Ciudad":
+      listaActual.sort((a, b) => {
+        if (a.ciudad > b.ciudad) {
+          return 1;
+        } else if (a.ciudad < b.ciudad) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      break;
+    case "Enemigo":
+      listaActual.sort((a, b) => {
+        if (a.enemigo > b.enemigo) {
+          return 1;
+        } else if (a.enemigo < b.enemigo) {
+          return -1;
+        } else {
+          return 0;
+        }
+      });
+      break;
+
+    default:
+      break;
+  }
+
+  MostrarTablaPeronas();
 }
+
 function SelecPersonaDeLaTabla(celda) {
   personaSelec = PersonaPorId(celda.path[1].cells[0].innerText);
   if (personaSelec) {
@@ -200,7 +271,7 @@ function ModificarPersona() {
   personaSelec.edad = form.inputEdad.value;
 
   if (personaSelec instanceof Heroe) {
-    personaSelec.alterEgo = form.inputAlterEgo.value;
+    personaSelec.alterego = form.inputAlterego.value;
     personaSelec.ciudad = form.inputCiudad.value;
     personaSelec.publicado = form.inputPublicado.value;
   } else {
@@ -211,11 +282,12 @@ function ModificarPersona() {
 
   MostrarFormAgregar(false);
 }
+
 function EliminarPersona() {
-  console.log(personaSelec);
   personas.splice(personas.indexOf(personaSelec), 1);
   MostrarFormAgregar(false);
 }
+
 function AltaPersona() {
   form.inputId.value = NuevoId();
   personas.push(GuardarPersona());
@@ -225,7 +297,7 @@ function AltaPersona() {
 function GuardarPersona() {
   switch (selectorAgregarTipo.value) {
     case "Heroe":
-      personas.push(new Heroe(form.inputId.value, form.inputNombre.value, form.inputApellido.value, form.inputEdad.value, form.inputAlterEgo.value, form.inputCiudad.value, form.inputPublicado.value));
+      personas.push(new Heroe(form.inputId.value, form.inputNombre.value, form.inputApellido.value, form.inputEdad.value, form.inputAlterego.value, form.inputCiudad.value, form.inputPublicado.value));
       break;
     case "Villano":
       personas.push(new Villano(form.inputId.value, form.inputNombre.value, form.inputApellido.value, form.inputEdad.value, form.inputEnemigo.value, form.inputRobos.value, form.inputAsesinatos.value));
@@ -290,6 +362,7 @@ function MostarElement(element, mostrar) {
   if (mostrar || mostrar == undefined) element.classList.remove("ocultar");
   else element.className += " ocultar";
 }
+
 function MostarElementos(elementos, mostrar) {
   elementos.forEach(element => {
     MostarElement(element, mostrar);
@@ -350,7 +423,6 @@ function CalcularPromedio() {
   });
 
   let suma = edades.reduce((total, edad) => {
-    console.log(total, edad);
     return total + edad;
   });
 
@@ -375,15 +447,3 @@ function PersonaPorId(id) {
   });
   return persona;
 }
-
-// function PersonaPorId(id) {
-//   console.log("id: ", id);
-//   personas.forEach(element => {
-//     console.log("pe: ", element.id);
-//     if (element.id == id) {
-//       console.log("ok");
-//       return element;
-//     }
-//   });
-//   return false;
-// }
