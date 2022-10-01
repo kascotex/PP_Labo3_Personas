@@ -243,7 +243,7 @@ function SelecPersonaDeLaTabla(celda) {
 }
 
 function PersonaValida(persona) {
-  if (persona.id == undefined || persona.nombre == undefined || persona.apellido == undefined || persona.edad == undefined || persona.alterego == undefined || persona.ciudad == undefined || persona.publicado == undefined || persona.enemigo == undefined || persona.robos == undefined || persona.asesinatos == undefined || persona.id < 1 || persona.robos < 0 || persona.asesinatos < 0 || persona.publicado < 1940 || persona.nombre == "" || persona.apellido == "" || persona.alterego == "" || persona.ciudad == "" || persona.enemigo == "") alert("Error en los Datos!");
+  if ( persona.id < 1 || persona.edad < 0 || persona.nombre == "" || persona.apellido == "") alert("Error en los Datos!");
 }
 
 function ModificarPersona() {
