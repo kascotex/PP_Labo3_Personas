@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="./persona.js" defer></script>
 
     <title>ABM de Personas</title>
@@ -23,7 +23,7 @@
                 <option value="Villano"> Villano </option>
             </select>
         </section>
-        
+
         <section id="promedios">
             <label for="calcular">Calcular Edad Promedio:</label>
             <input type="text" id="inputCalcular" readonly>
@@ -79,7 +79,7 @@
             </select>
 
             <section id="formAgregarHeroe" class="formAgregarTipo">
-                <label for="inputAlterego">Alterego: </label><input type="text" id="inputAlterego" placeholder="red">
+                <label for="inputAlterego">Alterego: </label><input type="text" id="inputAlterego">
                 <label for="inputCiudad">Ciudad: </label><input type="text" id="inputCiudad">
                 <label for="inputPublicado">Publicado: </label><input type="text" id="inputPublicado">
             </section>
@@ -101,13 +101,41 @@
 
     </section>
 
-
-
-    <script>
-    </script>
-
-
     <style>
+        html {
+            box-sizing: border-box;
+            font-size: 80.5%;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            font-size: 1.6rem;
+            line-height: 2;
+        }
+
+        h1 {
+            color: cadetblue;
+            text-align: center;
+            margin: 0%;
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            width: 100%;
+        }
+
+        td {
+            border: 1px solid black;
+            text-align: center;
+            background-color: rgb(183, 220, 161);
+        }
+
+        th {
+            background-color: rgb(56, 121, 196);
+            color: #fff;
+        }
+
         .ocultar {
             display: none;
         }

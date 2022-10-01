@@ -264,22 +264,27 @@ function SelecPersonaDeLaTabla(celda) {
   }
 }
 
+function PersonaValida(persona) {
+  if (persona.id == undefined || persona.nombre == undefined || persona.apellido == undefined || persona.edad == undefined || persona.alterego == undefined || persona.ciudad == undefined || persona.publicado == undefined || persona.enemigo == undefined || persona.robos == undefined || persona.asesinatos == undefined || persona.id < 1 || persona.robos < 0 || persona.asesinatos < 0 || persona.publicado < 1940 || persona.nombre == "" || persona.apellido == "" || persona.alterego == "" || persona.ciudad == "" || persona.enemigo == "") alert("Error en los Datos!");
+}
+
 function ModificarPersona() {
-  personaSelec.id = form.inputId.value;
-  personaSelec.nombre = form.inputNombre.value;
-  personaSelec.apellido = form.inputApellido.value;
-  personaSelec.edad = form.inputEdad.value;
+  if (PersonaValida(personaSelec)) {
+    personaSelec.id = form.inputId.value;
+    personaSelec.nombre = form.inputNombre.value;
+    personaSelec.apellido = form.inputApellido.value;
+    personaSelec.edad = form.inputEdad.value;
 
-  if (personaSelec instanceof Heroe) {
-    personaSelec.alterego = form.inputAlterego.value;
-    personaSelec.ciudad = form.inputCiudad.value;
-    personaSelec.publicado = form.inputPublicado.value;
-  } else {
-    personaSelec.enemigo = form.inputEnemigo.value;
-    personaSelec.robos = form.inputRobos.value;
-    personaSelec.asesinatos = form.inputAsesinatos.value;
+    if (personaSelec instanceof Heroe) {
+      personaSelec.alterego = form.inputAlterego.value;
+      personaSelec.ciudad = form.inputCiudad.value;
+      personaSelec.publicado = form.inputPublicado.value;
+    } else {
+      personaSelec.enemigo = form.inputEnemigo.value;
+      personaSelec.robos = form.inputRobos.value;
+      personaSelec.asesinatos = form.inputAsesinatos.value;
+    }
   }
-
   MostrarFormAgregar(false);
 }
 
@@ -290,19 +295,25 @@ function EliminarPersona() {
 
 function AltaPersona() {
   form.inputId.value = NuevoId();
-  personas.push(GuardarPersona());
+  let persona = GuardarPersona();
+
+  if (PersonaValida(persona)) {
+    personas.push(persona);
+  }
   MostrarFormAgregar(false);
 }
 
 function GuardarPersona() {
+  let persona;
   switch (selectorAgregarTipo.value) {
     case "Heroe":
-      personas.push(new Heroe(form.inputId.value, form.inputNombre.value, form.inputApellido.value, form.inputEdad.value, form.inputAlterego.value, form.inputCiudad.value, form.inputPublicado.value));
+      persona = new Heroe(form.inputId.value, form.inputNombre.value, form.inputApellido.value, form.inputEdad.value, form.inputAlterego.value, form.inputCiudad.value, form.inputPublicado.value);
       break;
     case "Villano":
-      personas.push(new Villano(form.inputId.value, form.inputNombre.value, form.inputApellido.value, form.inputEdad.value, form.inputEnemigo.value, form.inputRobos.value, form.inputAsesinatos.value));
+      persona = new Villano(form.inputId.value, form.inputNombre.value, form.inputApellido.value, form.inputEdad.value, form.inputEnemigo.value, form.inputRobos.value, form.inputAsesinatos.value);
       break;
   }
+  return persona;
 }
 
 function MostrarFormAgregarTipoSeleccionado() {
