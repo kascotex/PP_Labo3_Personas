@@ -33,23 +33,6 @@ class Persona {
   ToStringRow() {
     return `<td class="id">${this.id}${tdClass}"nombre">${this.nombre}${tdClass}"apellido">${this.apellido}${tdClass}"edad">${this.edad}`;
   }
-
-  ToJsonString(data) {
-    if (!data) {
-      return JSON.stringify({
-        nombre: this.nombre,
-        apellido: this.apellido,
-        edad: this.edad,
-      });
-    } else {
-      return JSON.stringify({
-        id: this.id,
-        nombre: this.nombre,
-        apellido: this.apellido,
-        edad: this.edad,
-      });
-    }
-  }
 }
 
 class Heroe extends Persona {
@@ -107,12 +90,11 @@ const personas = Persona.CrearDesdeJson(
 );
 
 console.log(personas);
-// personas.push(new Persona(11, "pepe", "apellido", 5,));
 
 let listaActual;
 let personaSelec;
-
 let ultimoId = UltimoId();
+
 const botonAgregar = document.getElementById("botonAgregar");
 const botonAlta = document.getElementById("botonAlta");
 const botonModificar = document.getElementById("botonModificar");
@@ -248,11 +230,7 @@ function SelecColumnaDeLaTabla(celda) {
         }
       });
       break;
-
-    default:
-      break;
   }
-
   MostrarTablaPeronas();
 }
 
@@ -337,7 +315,6 @@ function MostrarFormAgregar(mostrar) {
       MostrarTablaPeronas();
       break;
     case "Modificar":
-      console.log("Modificar");
       formDatos.style.display = "none";
       botonAlta.style.display = "none";
       selectorAgregarTipo.style.display = "none";
@@ -347,11 +324,8 @@ function MostrarFormAgregar(mostrar) {
       MostrarFormAgregarTipoSeleccionado();
       break;
     case "Alta":
-      console.log("Alta");
     case true:
-      console.log("true");
     default:
-      console.log("Default");
       formDatos.style.display = "none";
       botonEliminar.style.display = "none";
       botonModificar.style.display = "none";
@@ -423,8 +397,8 @@ function MostrarTablaPeronas() {
 function LimpiarTabla() {
   listaActual = Array();
 
-  while (tablaPersonas.rows.length > 1) {
-    tablaPersonas.deleteRow(1);
+  while (tablaPersonasBody.rows.length > 1) {
+    tablaPersonasBody.deleteRow(1);
   }
 }
 
@@ -453,6 +427,7 @@ function NuevoId() {
 }
 
 function PersonaPorId(id) {
+  let persona = false;
   personas.forEach(element => {
     if (element.id == id) persona = element;
   });
